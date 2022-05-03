@@ -20,17 +20,17 @@ One important step in using meta-transactions is verifying signature, making sur
 Call **encode_structured_data**, then sign output using **w3.eth.account.sign_message**.
 
 
+One caveat being, you want to convert bytes abi parameters to bytes in python first:
+
+```python
+tx["message"]["data"] = tx["message"]["data"].encode("utf8") 
+```
+
+Then do:
+
 ```python
 encoded_data = encode_structured_data(tx)
 signature = w3.eth.account.sign_message(encoded_data, private_key).signature.hex()
-```
-
-One caveat you want to convert bytes abi parameters to bytes in python, before calling **encode_structured_data**:
-
-
-```python
-tx["message"]["data"] = tx["message"]["data"].encode("utf8")
-encoded_data = encode_structured_data(tx)
 ```
 
 # Demonstration
