@@ -65,8 +65,7 @@ Let's use some random private key to sign the message:
 
 ```python
 private_key = w3.sha3(text="random")
-signer_address = Account.from_key(private_key).address
-signer_address
+signer_address = Account.from_key(private_key).address 
 ```
 
 Let's create the message we'd like to sign:
@@ -118,12 +117,12 @@ signature
 type_hash = w3.keccak(text='ForwardRequest(address from,address to,uint256 value,uint256 gas,uint256 nonce,bytes data)').hex()
 domain_hash = hash_domain(tx).hex()  
 
-recoveredAddress = verifierContract.functions.recoverAddress(tx["message"], domain_hash, type_hash, '0x', signature).call()
+recovered_address = verifierContract.functions.recoverAddress(tx["message"], domain_hash, type_hash, '0x', signature).call()
 ```
 
 
 ```python
-print(f"Signer Address: {signer_address}\nRecovered Address from Signature: {recoveredAddress}")
+print(f"Signer Address: {signer_address}\nRecovered Address from Signature: {recovered_address}")
 ```
 
 # Executing payload in Solidity
